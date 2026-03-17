@@ -6,12 +6,20 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:59:14 by dteruya           #+#    #+#             */
-/*   Updated: 2026/03/13 15:50:54 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/03/17 14:38:36 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_HPP
 #define SPAN_HPP
+
+#include <limits>
+#include <stdexcept>
+#include <vector>
+#include <list>
+#include <algorithm>
+#include <iostream>
+
 
 class Span
 {
@@ -32,13 +40,13 @@ class Span
 		int	shortestSpan();
 		int	longestSpan();
 
-		class FullException : public std::FullException
+		class FullException : public std::exception
 		{
 			public:
 				const char* what() const throw();
 		};
 
-		class NoSpanException : public std::NoSpanException
+		class NoSpanException : public std::exception
 		{
 			public:
 				const char* what() const throw();

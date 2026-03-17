@@ -6,7 +6,7 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:59:07 by dteruya           #+#    #+#             */
-/*   Updated: 2026/03/13 17:45:03 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/03/17 14:48:45 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Span::Span() : N(0) , numbers() {}
 
-Span::Span(unsigned int _N): N(_N), number() {}
+Span::Span(unsigned int _N): N(_N), numbers() {}
 
 Span::Span(const Span &other) : N(other.N) , numbers(other.numbers) {}
 
@@ -32,8 +32,8 @@ Span& Span::operator=(const Span &other)
 
 void Span::addNumber(int nbr)
 {
-	if (numbers.size() >= this.N)
-		throw NoSpanException();
+	if (numbers.size() >= N)
+		throw FullException();
 	numbers.push_back(nbr);
 }
 
@@ -50,10 +50,32 @@ void Span::addNumber(Iterator start, Iterator end)
 }
 
 int	Span::shortestSpan()
-{}
+{
+	if (numbers.size() < 2)
+		throw NoSpanException();
+	std::vector<int> temp = numbers;
+
+	std::sort(temp.begin(), temp.end());
+	int minSpan = std::numeric_limits<int>::max();
+	for (size_t i = 0; i < temp.size() - 1; i++)
+	{
+		int diff = temp[i + 1] - temp[i];
+		if (diff < minSpan)
+			minSpan = diff;
+	}
+	return minSpan;
+}
 
 int	Span::longestSpan()
-{}
+{
+	if (numbers.size() < 2)
+		throw NoSpanException();
+
+	int min = *std::min_element(numbers.begin(), numbers.end());
+	int max = *std::max_element(numbers.begin(), numbers.end());
+
+	return max - min;
+}
 
 
 const char* Span::FullException::what() const throw()
