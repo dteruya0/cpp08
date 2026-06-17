@@ -1,55 +1,107 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 14:59:10 by dteruya           #+#    #+#             */
-/*   Updated: 2026/03/17 14:45:35 by dteruya          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "Span.hpp"
+#include <vector>
 
-int main() {
-    try {
-        std::cout << "=== TEST 1: basic ===" << std::endl;
+int main(void)
+{
+	std::cout << "===== TESTE BASICO =====" << std::endl;
 
-        Span sp(5);
+	try
+	{
+		Span sp = Span(5);
 
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(17);
-        sp.addNumber(9);
-        sp.addNumber(11);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
 
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Erro: " << e.what() << std::endl;
+	}
 
-        std::cout << "\n=== TEST 2: error (less than 2 elements) ===" << std::endl;
+	std::cout << std::endl;
+	std::cout << "===== TESTE LIMITE CHEIO =====" << std::endl;
 
-        Span sp2(5);
-        sp2.addNumber(42);
+	try
+	{
+		Span sp = Span(3);
 
-        std::cout << sp2.shortestSpan() << std::endl;
+		sp.addNumber(10);
+		sp.addNumber(20);
+		sp.addNumber(30);
 
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+		std::cout << "Tentando adicionar mais um numero..." << std::endl;
+		sp.addNumber(40);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    try {
-        std::cout << "\n=== TEST 3: overflow ===" << std::endl;
+	std::cout << std::endl;
+	std::cout << "===== TESTE COM POUCOS NUMEROS =====" << std::endl;
 
-        Span sp3(2);
+	try
+	{
+		Span sp = Span(5);
 
-        sp3.addNumber(1);
-        sp3.addNumber(2);
-        sp3.addNumber(3);
+		sp.addNumber(42);
 
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+		std::cout << "Tentando calcular shortestSpan com apenas 1 numero..." << std::endl;
+		std::cout << sp.shortestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Erro esperado: " << e.what() << std::endl;
+	}
 
-    return 0;
+	std::cout << std::endl;
+	std::cout << "===== TESTE COM NUMEROS NEGATIVOS =====" << std::endl;
+
+	try
+	{
+		Span sp = Span(5);
+
+		sp.addNumber(-10);
+		sp.addNumber(5);
+		sp.addNumber(20);
+		sp.addNumber(-30);
+		sp.addNumber(0);
+
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Erro: " << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "===== TESTE COM MUITOS NUMEROS =====" << std::endl;
+
+	try
+	{
+		Span sp = Span(10000);
+
+        std::vector<int> valores;
+
+        for (int i = 0; i < 10000; i++)
+            valores.push_back(i);
+
+        sp.addNumber(valores.begin(), valores.end());
+
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Erro: " << e.what() << std::endl;
+	}
+
+	return (0);
 }

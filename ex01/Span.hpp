@@ -35,10 +35,20 @@ class Span
 		~Span();
 
 		void addNumber(int nbr);
-		template <typename iterator>
-		void addNumber(iterator start, iterator end);
 		int	shortestSpan();
 		int	longestSpan();
+
+		template <typename Iterator>
+		void addNumber(Iterator start, Iterator end)
+		{
+			if (numbers.size() + std::distance(start, end) > N)
+				throw FullException();
+			while (start != end)
+			{
+				numbers.push_back(*start);
+				start++;
+			}
+		}
 
 		class FullException : public std::exception
 		{

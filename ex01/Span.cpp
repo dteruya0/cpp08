@@ -37,18 +37,6 @@ void Span::addNumber(int nbr)
 	numbers.push_back(nbr);
 }
 
-template <typename Iterator>
-void Span::addNumber(Iterator start, Iterator end)
-{
-	if (numbers.size() + std::distance(start, end) > N)
-		throw FullException();
-	while (start != end)
-	{
-		numbers.push_back(*start);
-		start++;
-	}
-}
-
 int	Span::shortestSpan()
 {
 	if (numbers.size() < 2)
