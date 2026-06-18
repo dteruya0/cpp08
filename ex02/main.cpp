@@ -6,15 +6,10 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:52:34 by dteruya           #+#    #+#             */
-/*   Updated: 2026/06/18 19:28:32 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/06/18 19:31:37 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.hpp"
-
-
-#include <iostream>
-#include <list>
 #include "MutantStack.hpp"
 
 int main()
