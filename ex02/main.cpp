@@ -6,7 +6,7 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:52:34 by dteruya           #+#    #+#             */
-/*   Updated: 2026/06/18 19:31:37 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/07/27 21:01:31 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int main()
     mstack.push(5);
     mstack.push(737);
     mstack.push(0);
+
+	std::cout << "\n===== TESTE CONSTRUTOR DE COPIA =====" << std::endl;
+
+	MutantStack<int> copia(mstack);
+
+	std::cout << "top da copia: " << copia.top() << std::endl;
+	std::cout << "size da copia: " << copia.size() << std::endl;
+
+	MutantStack<int>::iterator itCopia = copia.begin();
+	MutantStack<int>::iterator iteCopia = copia.end();
+
+	while (itCopia != iteCopia)
+	{
+		std::cout << *itCopia << std::endl;
+		++itCopia;
+	}
 
     std::cout << "\nPercorrendo com iterator:" << std::endl;
 
